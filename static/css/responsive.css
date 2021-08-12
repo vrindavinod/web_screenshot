@@ -1,0 +1,283 @@
+@media (max-width: 1440px) {
+    #toggle {
+        display: inline-block;
+    }
+    .main-content {
+	    margin-left: 0;
+        margin-right: 0;
+	}
+	.left-sidebar {
+		margin-left: -250px;
+	}
+    .top-area{
+        margin-left: 0;
+    }
+}
+@media (max-width: 1200px) {
+    .main-content .cards .single-card .first-card .card-number .master-img {
+        margin-left: 30px;
+    }
+    .main-content .cards .single-card .second-card .card-number .master-img {
+        margin-left: 30px;
+    }
+    .main-content .third-card .card-number .master-img {
+        margin-left: 30px;
+    }
+    .main-content .single-balance-three .icon{
+        float: none;
+        margin-bottom: 5px;
+    }
+}
+@media (max-width: 1199px) {
+    .top-area .notofication {
+        margin-left: 15px;
+    }
+    .top-area .profile {
+        margin-left: 15px;
+    }
+    .main-content .cards .single-card .second-card .holder .single-holder:last-child {
+        margin-left: 50px;
+    }
+    .main-content .cards .single-card .first-card .holder .single-holder:last-child {
+        margin-left: 50px;
+    }
+    .main-content .cards .single-card .first-card .card-number p {
+        font-size: 18px;
+    }
+    .main-content .cards .single-card .second-card .card-number p {
+        font-size: 18px;
+    }
+    .main-content .cards .single-card .second-card .card-number .master-img {
+        margin-left: 10px;
+    }
+    .main-content .cards .single-card .first-card .card-number .master-img {
+        margin-left: 10px;
+    }
+    .top-area .toogle-bar {
+        right: 20px;
+    }
+    .main-content .dashboard-content .recent-transaction .transition-list ul li .icon {
+        margin-right: 10px;
+        float: left;
+    }
+    .main-content .dashboard-content .recent-transaction .transition-list ul li .name h5 {
+        font-size: 14px;
+    }
+    .main-content .dashboard-content .recent-transaction .transition-list ul li .name p {
+        font-size: 12px;
+    }
+    .main-content .dashboard-content .recent-transaction .transition-list ul li .amount span {
+        font-size: 14px;
+    }
+    .main-content .dashboard-content .quick-transfer .transfer .transfer-amount p {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .main-content .transaction-content .transection-table .tab-content .tab-pane table {
+        width: 1100px !important;
+    }
+    .main-content .third-card .card-number p {
+        font-size: 18px;
+    }
+    .main-content .third-card .card-number .master-img {
+        margin-left: 10px;
+    }
+    .main-content .single-balance-two .icon {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .main-content .single-balance-two .icon i::before {
+        font-size: 25px;
+    }
+    .main-content .single-balance-two {
+        padding: 25px 20px;
+    }
+    .main-content .investment-content .my-invest .invest-list table{
+        width: 700px !important;
+    }
+    .main-content .cradit-content .card-expenses .expense-chaart {
+        padding: 20px 40px 28px 40px;
+    }
+    .main-content .cradit-content .card-setting .setting-list {
+        padding: 30px 10px;
+    }
+    .main-content .cradit-content .card-setting .setting-list ul li a .icon {
+        margin-right: 10px;
+    }
+    .main-content .cradit-content .card-list .card-table table {
+        width: 700px !important;
+    }
+}
+/* Large devices (desktops, 992px and up)*/
+@media (max-width: 991px) {
+    .main-content .dashboard-content .quick-transfer .transfer .transfer-amount p {
+        margin-right: 25px;
+        margin-bottom: 0;
+    }
+    .heading
+    {margin-top: 0px;
+    }
+    
+    .quick-transfer {
+        margin-bottom: 30px;
+    }
+    .expense {
+        margin-bottom: 30px;
+    }
+    .long-chart {
+        margin-bottom: 30px;
+    }
+    .main-content .account-content .last-transection .transection-table table {
+        width: 640px !important;
+    }
+    .main-content .single-balance-two .icon {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+    }
+    .top-area .top-heading h2 {
+        font-size: 22px;
+    }
+    .main-content .cradit-content .new-card{
+        margin-bottom: 30px;
+    }
+    .main-content .cradit-content .card-setting .setting-list {
+        padding: 30px;
+    }
+    .main-content .cradit-content .card-setting .setting-list ul li a .icon {
+        margin-right: 18px;
+    }
+    .main-content .loans-content .loans-overview .overview-table table {
+        /*width: 850px !important;*/
+    }
+    .main-content .service-content .service-list .service-table table {
+        /*width: 910px;*/
+    }
+    .main-content .setting-content .settings-tab .edit-profile .profile-img{
+        margin-bottom: 30px;
+    }
+
+}
+/* Medium devices (tablets, 768px and up)*/
+@media (max-width: 767px) {
+    .top-area .top-heading {
+        position: relative;
+        top: 0;
+        transform: translateY(0);
+        margin-bottom: 10px;
+    }
+    .top-area .search-bar {
+        margin-bottom: 10px;
+    }
+    .top-area .toogle-bar {
+        top: 44%;
+    }
+}
+/* Small devices (landscape phones, 576px and up)*/
+@media (max-width: 575px) {
+    .main-content .account-content .long-chart .main-chart p {
+        font-size: 15px;
+    }
+    .main-content .investment-content .trading-shock .trading-table table {
+        width: 440px;
+    }
+}
+/* Small devices (landscape phones, 576px and up)*/
+@media (max-width: 479px) {
+    .main-content .single-balance-two .icon {
+        float: none;
+        margin-bottom: 5px;
+    }
+    .main-content .cradit-content .card-setting .setting-list ul li a .icon {
+        margin-right: 10px;
+    }
+    .main-content .cradit-content .card-setting .setting-list {
+        padding: 30px 10px;
+    }
+    .main-content .setting-content .settings-tab .nav{
+        display: block;
+        text-align: center;
+    }
+    .main-content .setting-content .settings-tab {
+        padding: 40px 15px;
+    }
+    .main-content .setting-content .settings-tab .single-notification p {
+        margin-top: 5px;
+        margin-left: 0;
+    }
+    .main-content .setting-content .settings-tab .notification-heading h3 {
+        font-size: 15px;
+    }
+    .main-content {
+        padding: 24px 0;
+    }
+}
+/* Small devices (landscape phones, 576px and up)*/
+@media (max-width: 374px) {
+    .main-content .cards .single-card .first-card .holder .single-holder:last-child {
+        margin-left: 10px;
+    }
+    .main-content .cards .single-card .first-card .card-number {
+        padding: 15px 10px;
+    }
+    .main-content .cards .single-card .first-card .card-number p {
+        font-size: 17px;
+    }
+    .main-content .cards .single-card .first-card .card-number .master-img {
+        margin-left: 0;
+    }
+    .main-content .cards .single-card .second-card .holder .single-holder:last-child {
+        margin-left: 10px;
+    }
+    .main-content .cards .single-card .second-card .card-number {
+        padding: 15px 10px;
+    }
+    .main-content .cards .single-card .second-card .card-number p {
+        font-size: 17px;
+    }
+    .main-content .cards .single-card .second-card .card-number .master-img {
+        margin-left: 0;
+    }
+    .main-content .dashboard-content .recent-transaction .transition-list {
+        padding: 25px 12px;
+    }
+    .main-content .dashboard-content .recent-transaction .transition-list ul li .amount span {
+        font-size: 12px;
+    }
+    .main-content .dashboard-content .long-chart .main-chart {
+        padding: 30px 15px;
+    }
+    .main-content .dashboard-content .quick-transfer .transfer .transfer-amount form button {
+        padding: 0 15px;
+    }
+    .main-content .dashboard-content .quick-transfer .transfer .transfer-amount p {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .main-content .third-card .holder .single-holder:last-child{
+        margin-left: 10px;
+    }
+    .main-content .third-card .card-number {
+        padding: 15px 10px;
+    }
+    .main-content .third-card .card-number p {
+        font-size: 16px;
+    }
+    .heading h2 {
+        font-size: 20px;
+    }
+    .main-content .cradit-content .card-expenses .expense-chaart {
+        padding: 20px 10px 28px 10px;
+    }
+    .main-content .cradit-content .new-card .add-card {
+        padding: 35px 15px;
+    }
+    .main-content .cradit-content .card-setting .setting-list ul li a .icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .main-content .transaction-content .transection-table .pagination .page-item .page-link {
+        padding: 10px 10px;
+    }
+}

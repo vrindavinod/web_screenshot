@@ -1,0 +1,96 @@
+/* [data-theme="dark"] .bg-light {
+  background-color: #333 !important;
+}
+
+[data-theme="dark"] .bg-white {
+  background-color: #000 !important;
+}
+
+[data-theme="dark"] .bg-black {
+  background-color: #eee !important;
+} */
+.dark .main-content{
+  background: #222222;
+}
+.dark .left-sidebar{
+  background: #1a1a1a;
+}
+.dark .top-area{
+  background: #1a1a1a;
+}
+.dark .top-area .single-share .share-content p{
+  color: #ffffff;
+}
+.dark .top-area .single-share .share-content h5{
+  color: #ffffff;
+}
+.dark .main-content .stacking-area .top-content h3{
+  color: #ffffff;
+}
+.dark .main-content .bottom-text p{
+  color: #ffffff;
+}
+.dark .main-content .popup-content .single-popup .modal.fade{
+  background: #222222;
+}
+.dark .main-content .popup-content .single-popup .modal-body .long-overview{
+  background: #222222;
+}
+.dark .main-content .popup-content .single-popup .modal-body .small-overview{
+  background: #222222;
+}
+.dark .main-content .popup-content .single-popup .modal-body .long-overview table tr td{
+  color: #ffffff;
+}
+.dark .main-content .popup-content .single-popup .modal-body .small-overview table tr td{
+  color: #ffffff;
+}
+.dark .left-sidebar .sidebar-menu ul li a span{
+  color: #ffffff;
+}
+.dark .left-sidebar .mode span{
+  color: #ffffff;
+}
+.dark .dashboard-content{
+  background: #222222;
+}
+.dark .dashboard-content .dash-logo h3{
+  color: #ffffff;
+}
+.dark .dashboard-content .asset-area .heading h3{
+  color: #ffffff;
+}
+.dark .dashboard-content .active-stakes-area .heading h3{
+  color: #ffffff;
+}
+.dark .dashboard-content .active-stakes-area .stake-table-two .table-heading table tr th{
+  color: #ffffff;
+}
+.dark .dashboard-content .active-stakes-area .stake-table .table-heading table tr th{
+  color: #ffffff;
+}
+.dark .dashboard-content .active-stakes-area .stake-table .table-heading table tr th i{
+  color: #ffffff;
+}
+.dark .dashboard-content .active-stakes-area .stake-table-two .table-heading table tr th i{
+  color: #ffffff;
+}
+.dark {
+  background: #222222;
+}
+
+.dark .main-content .popup-content .single-popup .modal-content{
+  background: #000000;
+}
+.dark .modal-title{
+  color: #ffffff;
+}
+.dark .main-content .popup-content .single-popup .modal-header button{
+  color: #ffffff;
+}
+.dark .main-content .popup-content .single-popup .modal-body .small-details p{
+  color: #ffffff;
+}
+.dark .main-content .popup-content .single-popup .bottom-text p {
+  color: #ffffff;
+}
