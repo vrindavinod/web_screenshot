@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, abort,render_template
+from flask import Flask, jsonify, request, abort,render_template, make_response
 from datetime import datetime
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
@@ -669,6 +669,22 @@ def generate_report(id):
 
     with open('templates/studentTemplate/'+name+' - '+str(s_id)+'.html','w+') as final_report:
         final_report.write(outhtml)
-        # pdfkit.from_file(final_report,'out.pdf')
+        
+    #pdf
+    with open('templates/studentPdf/'+name+' - '+str(s_id)+'.html','w+') as final_pdf:
+        final_pdf.write(outhtml)
 
+
+    # rendered = render_template('studentPdf/'+name+' - '+str(s_id)+'.html')
+    # css = ['static/css/all.css','static/css/bootstrap.min.css','static/css/dark-mode.css',
+    # 'static/css/flaticon.css','static/css/responsive.css','static/css/slick.css','static/css/style.css',
+    # 'static/css/style.scss']
+    # pdf = pdfkit.from_string(rendered,False,css = css)
+
+    # response = make_response(pdf)
+    # response.headers['Content-Type'] = 'application/pdf'
+    # response.headers['COntent-Disposition'] = 'attachment;filename = output.pdf'
+    
+
+    # return response
     return render_template('studentTemplate/'+name+' - '+str(s_id)+'.html')
