@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Diagnostic Report</title>
+    <title>Learning Diagnostic Test Report</title>
     <!-- favicon -->
     <link rel="shortcut icon" href="{{url_for('static', filename='images/logo-square.png')}}" type="image/x-icon">
     <!-- google fonts -->
@@ -87,11 +87,11 @@
         <div class="loans-content">
             <div class="container-fluid">
 
-                <div class="col-lg-6 col-md-3">
+                <div class="col-lg-6 col-md-8 col-sm-12">
                     <div class="heading">
                         <h2 id="highlights">STUDENT_FIRSTNAME's Performance Highlights </h2>
                     </div>
-                    <input type="button" value="Print" class="btn_print">
+                    <!-- <input type="button" value="Print" class="btn_print"> -->
                 </div>
                 <!-- stats start -->
                 <div class="row">
@@ -339,7 +339,7 @@
                 </div>
             </div>
         </div>
-
+<br><br><br>
         <!-- <div class="main-content"> -->
         <div class="investment-content">
             <div class="container-fluid">
@@ -355,22 +355,22 @@
                                     <tr>
                                         <th>SL No</th>
                                         <th><strong> Name</strong></th>
-                                        <th>Price</th>
-                                        <th>Return</th>
+                                        
+                                        
                                     </tr>
                                     <tr>
                                         <td>01.</td>
                                         <td><strong><a href="#titlePage" style="color: #505887;"> Title
                                                     Page</a></strong></td>
-                                        <td>$520</td>
-                                        <td><span>+5%</span></td>
+                                        
+                                        
                                     </tr>
                                     <tr>
                                         <td>02.</td>
                                         <td><strong><a href="#highlights" style="color: #505887;">Test
                                                     Highlights</a></strong></td>
-                                        <td>$480</td>
-                                        <td><span>+10%</span></td>
+                                        
+                                       
                                     </tr>
                                     <tr>
                                         <td style="vertical-align: top;">03.</td>
@@ -386,8 +386,8 @@
                                                         Branch-wise Performance</a></li>
                                             </ul>
                                         </td>
-                                        <td>$350</td>
-                                        <td><span style="color: #FE5C73;">-3%</span></td>
+                                        
+                                    
                                     </tr>
                                     <tr>
                                         <td style="vertical-align: top;">04.</td>
@@ -412,15 +412,15 @@
                                                 </li>
                                             </ul>
                                         </td>
-                                        <td>$940</td>
-                                        <td><span>+2%</span></td>
+                                       
+                                     
                                     </tr>
                                     <tr>
                                         <td>05.</td>
                                         <td><strong><a href="#feedback" style="color: #505887;">Submit
                                                     Feedback</a></strong></td>
-                                        <td>$670</td>
-                                        <td><span style="color: #FE5C73;">-12%</span></td>
+                                       
+                                       
                                     </tr>
                                 </table>
                             </div>
@@ -540,7 +540,26 @@
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-
+                                                <tr>
+                                                    <th class="grade-title"><b>Grade</b></th>
+                                                   <th>
+                                                       <div class="row float-right" style="width: 35% !important">
+                                                        <div class="col" >
+                                                            <span class="bg-one color-grade"><br> </span>
+                                                           <span><p style="color:#718EBF;">Strong</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-two color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Average</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-three color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Weak</p> </span> 
+                                                        </div>
+                                                       </div>
+                                                   </th>
+                                                   
+                                                </tr>
                                                 ALGEBRA_TOPICS
 
                                             </tr>
@@ -575,7 +594,11 @@
                                         <div class="table-responsive">
                                             <table>
                                                 <tr>
-                                                    <th class="bg-one style-one"><b>You could easily</b></th>
+                                                    <th style="vertical-align: middle;">
+                                                        <span class="material-icons u-cud" style="color: #16DBCC !important;">
+                                                            trending_up
+                                                        </span>
+                                                        <b style="margin-bottom: 10px !important;">You could easily</b></th>
                                                 </tr>
                                                 YOU_COULD_ALGEBRA
 
@@ -591,7 +614,11 @@
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th class="bg-three style-three"><b>You could not easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #FF82AC !important;">
+                                                        trending_down
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could not easily</b></th>
                                             </tr>
                                             YOU_COULD_NOT_ALGEBRA
 
@@ -766,7 +793,26 @@
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-
+                                                <tr>
+                                                    <th class="grade-title"><b>Grade</b></th>
+                                                   <th>
+                                                       <div class="row float-right" style="width: 35% !important">
+                                                        <div class="col" >
+                                                            <span class="bg-one color-grade"><br> </span>
+                                                           <span><p style="color:#718EBF;">Strong</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-two color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Average</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-three color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Weak</p> </span> 
+                                                        </div>
+                                                       </div>
+                                                   </th>
+                                                   
+                                                </tr>
                                                 ARITHMETIC_TOPICS
 
                                             </tr>
@@ -796,11 +842,15 @@
 
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-one" id="arAbilityOne">
+                                <div class="overview-table " id="arAbilityOne">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #16DBCC !important;">
+                                                        trending_up
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could easily</b></th>
                                             </tr>
 
 
@@ -817,11 +867,15 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-three" id="arAbilityTwo">
+                                <div class="overview-table" id="arAbilityTwo">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could not easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #FF82AC !important;">
+                                                        trending_down
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could not easily</b></th>
                                             </tr>
                                             YOU_COULD_NOT_ARITHMETIC
 
@@ -840,7 +894,7 @@
 
                         <div class="col-lg-3">
                             <div class="loans-overview">
-                                <div class="overview-table bg-one" id="arDonot">
+                                <div class="overview-table bg-three" id="arDonot">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
@@ -871,15 +925,13 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="loans-overview">
-                                <div class="overview-table bg-two" id="arUnder">
+                                <div class="overview-table bg-one" id="arUnder">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
                                                 <th><b>Understand</b></th>
                                             </tr>
                                             UNDERSTAND_ARITHMETIC
-
-
                                         </table>
                                     </div>
                                 </div>
@@ -995,7 +1047,26 @@
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-
+                                                <tr>
+                                                    <th class="grade-title"><b>Grade</b></th>
+                                                   <th>
+                                                       <div class="row float-right" style="width: 35% !important">
+                                                        <div class="col" >
+                                                            <span class="bg-one color-grade"><br> </span>
+                                                           <span><p style="color:#718EBF;">Strong</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-two color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Average</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-three color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Weak</p> </span> 
+                                                        </div>
+                                                       </div>
+                                                   </th>
+                                                   
+                                                </tr>
                                                 GEOMETRY_TOPICS
 
                                             </tr>
@@ -1025,11 +1096,15 @@
 
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-one" id="geoAbilityOne">
+                                <div class="overview-table" id="geoAbilityOne">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #16DBCC !important;">
+                                                        trending_up
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could easily</b></th>
                                             </tr>
 
 
@@ -1046,11 +1121,15 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-three" id="geoAbilityTwo">
+                                <div class="overview-table" id="geoAbilityTwo">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could not easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #FF82AC !important;">
+                                                        trending_down
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could not easily</b></th>
                                             </tr>
                                             YOU_COULD_NOT_GEOMETRY
 
@@ -1224,7 +1303,26 @@
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-
+                                                <tr>
+                                                    <th class="grade-title"><b>Grade</b></th>
+                                                   <th>
+                                                       <div class="row float-right" style="width: 35% !important">
+                                                        <div class="col" >
+                                                            <span class="bg-one color-grade"><br> </span>
+                                                           <span><p style="color:#718EBF;">Strong</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-two color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Average</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-three color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Weak</p> </span> 
+                                                        </div>
+                                                       </div>
+                                                   </th>
+                                                   
+                                                </tr>
                                                 MENSURATION_TOPICS
 
                                             </tr>
@@ -1254,11 +1352,15 @@
 
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-one" id="menAbilityOne">
+                                <div class="overview-table" id="menAbilityOne">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #16DBCC !important;">
+                                                        trending_up
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could easily</b></th>
                                             </tr>
 
                                             YOU_COULD_MENSURATION
@@ -1271,11 +1373,15 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-three" id="menAbilityTwo">
+                                <div class="overview-table" id="menAbilityTwo">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could not easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #FF82AC !important;">
+                                                        trending_down
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could not easily</b></th>
                                             </tr>
                                             YOU_COULD_NOT_MENSURATION
                                         </table>
@@ -1448,7 +1554,26 @@
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-
+                                                <tr>
+                                                    <th class="grade-title"><b>Grade</b></th>
+                                                   <th>
+                                                       <div class="row float-right" style="width: 35% !important">
+                                                        <div class="col" >
+                                                            <span class="bg-one color-grade"><br> </span>
+                                                           <span><p style="color:#718EBF;">Strong</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-two color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Average</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-three color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Weak</p> </span> 
+                                                        </div>
+                                                       </div>
+                                                   </th>
+                                                   
+                                                </tr>
                                                 DATA HANDLING_TOPICS
 
                                             </tr>
@@ -1478,13 +1603,16 @@
 
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-one" id="dataAbilityOne">
+                                <div class="overview-table" id="dataAbilityOne">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #16DBCC !important;">
+                                                        trending_up
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could easily</b></th>
                                             </tr>
-
 
                                             YOU_COULD_DATA HANDLING
 
@@ -1499,11 +1627,15 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-three" id="dataAbilityTwo">
+                                <div class="overview-table" id="dataAbilityTwo">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could not easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #FF82AC !important;">
+                                                        trending_down
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could not easily</b></th>
                                             </tr>
                                             YOU_COULD_NOT_DATA HANDLING
 
@@ -1677,7 +1809,26 @@
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-
+                                                <tr>
+                                                    <th class="grade-title"><b>Grade</b></th>
+                                                   <th>
+                                                       <div class="row float-right" style="width: 35% !important">
+                                                        <div class="col" >
+                                                            <span class="bg-one color-grade"><br> </span>
+                                                           <span><p style="color:#718EBF;">Strong</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-two color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Average</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-three color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Weak</p> </span> 
+                                                        </div>
+                                                       </div>
+                                                   </th>
+                                                   
+                                                </tr>
                                                 PHYSICS_TOPICS
 
                                             </tr>
@@ -1707,11 +1858,15 @@
 
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-one" id="phyAbilityOne">
+                                <div class="overview-table" id="phyAbilityOne">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #16DBCC !important;">
+                                                        trending_up
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could easily</b></th>
                                             </tr>
 
 
@@ -1728,11 +1883,15 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-three" id="phyAbilityTwo">
+                                <div class="overview-table" id="phyAbilityTwo">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could not easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #FF82AC !important;">
+                                                        trending_down
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could not easily</b></th>
                                             </tr>
                                             YOU_COULD_NOT_PHYSICS
 
@@ -1906,7 +2065,26 @@
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-
+                                                <tr>
+                                                    <th class="grade-title"><b>Grade</b></th>
+                                                   <th>
+                                                       <div class="row float-right" style="width: 35% !important">
+                                                        <div class="col" >
+                                                            <span class="bg-one color-grade"><br> </span>
+                                                           <span><p style="color:#718EBF;">Strong</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-two color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Average</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-three color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Weak</p> </span> 
+                                                        </div>
+                                                       </div>
+                                                   </th>
+                                                   
+                                                </tr>
                                                 CHEMISTRY_TOPICS
 
                                             </tr>
@@ -1936,11 +2114,15 @@
 
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-one" id="chemAbilityOne">
+                                <div class="overview-table" id="chemAbilityOne">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #16DBCC !important;">
+                                                        trending_up
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could easily</b></th>
                                             </tr>
 
 
@@ -1957,11 +2139,15 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-three" id="chemAbilityTwo">
+                                <div class="overview-table" id="chemAbilityTwo">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could not easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #FF82AC !important;">
+                                                        trending_down
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could not easily</b></th>
                                             </tr>
                                             YOU_COULD_NOT_CHEMISTRY
 
@@ -2135,7 +2321,26 @@
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-
+                                                <tr>
+                                                    <th class="grade-title"><b>Grade</b></th>
+                                                   <th>
+                                                       <div class="row float-right" style="width: 35% !important">
+                                                        <div class="col" >
+                                                            <span class="bg-one color-grade"><br> </span>
+                                                           <span><p style="color:#718EBF;">Strong</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-two color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Average</p> </span> 
+                                                        </div>
+                                                        <div class="col">
+                                                            <span class="bg-three color-grade"><br> </span>
+                                                            <span><p style="color:#718EBF;">Weak</p> </span> 
+                                                        </div>
+                                                       </div>
+                                                   </th>
+                                                   
+                                                </tr>
                                                 BIOLOGY_TOPICS
 
                                             </tr>
@@ -2165,13 +2370,16 @@
 
                         <div class="col-lg-6">
                             <div class="loans-overview">
-                                <div class="overview-table bg-one" id="bioAbilityOne">
+                                <div class="overview-table" id="bioAbilityOne">
                                     <div class="table-responsive">
                                         <table>
                                             <tr>
-                                                <th><b>You could easily</b></th>
+                                                <th style="vertical-align: middle;">
+                                                    <span class="material-icons u-cud" style="color: #16DBCC !important;">
+                                                        trending_up
+                                                    </span>
+                                                    <b style="margin-bottom: 10px !important;">You could easily</b></th>
                                             </tr>
-
 
                                             YOU_COULD_BIOLOGY
 
@@ -2469,7 +2677,7 @@
                 };
 
                 $("#MathBranchContainer").CanvasJSChart(options);
-
+                console.log("foo")
                 var options = {
                     animationEnabled: true,
                     theme: "light2",

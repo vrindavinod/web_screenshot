@@ -1,19 +1,25 @@
-from flask import Flask, jsonify, request, abort,render_template, make_response
+from apscheduler.schedulers.background import BackgroundScheduler
+import shutil
+from flask import Flask, jsonify, request, abort,render_template, make_response, send_file
 from datetime import datetime
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import os
-import pdfkit
 os.getcwd()
 import gspread
+from configparser import ConfigParser
+import subprocess
 
+
+config = ConfigParser()
+config.read('.env')
 app = Flask(__name__)
 app.config['PDF_FOLDER'] = 'static/pdf/'
+HOST = config['app']['HOST']
+PORT = config['app']['PORT']
 
-credential = ServiceAccountCredentials.from_json_keyfile_name("credentials.json",["https://spreadsheets.google.com/feeds",                                                               "https://www.googleapis.com/auth/spreadsheets",                                                        "https://www.googleapis.com/auth/drive.file",                                                        "https://www.googleapis.com/auth/drive"])
+credential = ServiceAccountCredentials.from_json_keyfile_name("credentials.json",["https://spreadsheets.google.com/feeds","https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"])
 gc = gspread.authorize(credential)
 wb = gc.open("Studdicted DB")
 
@@ -190,7 +196,7 @@ def generate_report(id):
         elif most_populated_gt_level.lower() == 'average': b="average."
         elif most_populated_gt_level.lower() == 'weak': b="quite weak."
 
-        print((temp.gt_level.value_counts()/len(temp)).sort_values(ascending=False))
+        # print((temp.gt_level.value_counts()/len(temp)).sort_values(ascending=False))
         results_mean.append("""Your performance in """ + a + """ topics from """ + branch + " was " + b)
 
         temp1 = confam_pivot[confam_pivot['branch']==branch].sort_values(by=['branch','confam_level'])
@@ -571,108 +577,120 @@ def generate_report(id):
     elif o_score >= 0.00:p_level = "Alarming"
 
     with open('templates/mainTemplate/studdicted.html','r+') as template:
-        outhtml = template.read()
+        outhtml1 = template.read()
 
-    outhtml = outhtml.replace('STUDENT_NAME',name.upper())
-    outhtml = outhtml.replace('STUDENT_ID',str(s_id))
-    outhtml = outhtml.replace('STUDENT_GRADE','Grade '+str(grade))
-    outhtml = outhtml.replace('STUDENT_FIRSTNAME',f_name.title())
-    outhtml = outhtml.replace('TEST_DATE',t_date)
-    outhtml = outhtml.replace('TIME_TAKEN',t_taken)
-    outhtml = outhtml.replace('T_TAKEN_LEVEL',t_taken_level)
-    outhtml = outhtml.replace('QUESTION_ATTEMPTED',attmpt_q_cnt)
-    outhtml = outhtml.replace('TOTAL_QUESTIONS',all_q_cnt)
-    outhtml = outhtml.replace('PERFECT_ATTEMPTS',perfect_q_cnt)
-    outhtml = outhtml.replace('PARTIALLY_CORRECT',partial_corr_q_cnt)
-    outhtml = outhtml.replace('INCORRECT_ATTEMPTS',incorr_q_cnt)
-    outhtml = outhtml.replace('OVERALL_SCORE',str(round(o_score*100,2)))
-    outhtml = outhtml.replace('PERFORMANCE_LEVEL',p_level)
-    outhtml = outhtml.replace('MATHEMATICS_GRADE_7',str(MATHEMATICS_GRADE_7))
-    outhtml = outhtml.replace('MATHEMATICS_GRADE_8',str(MATHEMATICS_GRADE_8))
-    outhtml = outhtml.replace('MATHEMATICS_GRADE_9',str(MATHEMATICS_GRADE_9))
-    outhtml = outhtml.replace('SCIENCE_GRADE_7',str(SCIENCE_GRADE_7))
-    outhtml = outhtml.replace('SCIENCE_GRADE_8',str(SCIENCE_GRADE_8))
-    outhtml = outhtml.replace('SCIENCE_GRADE_9',str(SCIENCE_GRADE_9))
-    outhtml = outhtml.replace('MENSURATION_MARKS',str(MENSURATION_MARKS))
-    outhtml = outhtml.replace('DATA_HANDLING_MARKS',str(DATA_HANDLING_MARKS))
-    outhtml = outhtml.replace('ARITHMETIC_MARKS',str(ARITHMETIC_MARKS))
-    outhtml = outhtml.replace('GEOMETRY_MARKS',str(GEOMETRY_MARKS))
-    outhtml = outhtml.replace('ALGEBRA_MARKS',str(ALGEBRA_MARKS))
-    outhtml = outhtml.replace('PHYSICS_MARKS',str(PHYSICS_MARKS))
-    outhtml = outhtml.replace('CHEMISTRY_MARKS',str(CHEMISTRY_MARKS))
-    outhtml = outhtml.replace('BIOLOGY_MARKS',str(BIOLOGY_MARKS))
+    with open('templates/mainTemplate/pdf.html','r+') as template2:
+        outhtml2 = template2.read()
 
-    for i in range(len(subject_wise_marks)):
-        outhtml = outhtml.replace('SCORE_'+subject_wise_marks.iloc[i,0],str(subject_wise_marks.iloc[i,3]))
+    def template_creation(outhtml):
 
-    topic_output = gt_pivot[gt_pivot['gsbt score']>=20].sort_values(by=['branch','gt_level'])
+        outhtml = outhtml.replace('STUDENT_NAME',name.upper())
+        outhtml = outhtml.replace('STUDENT_ID',str(s_id))
+        outhtml = outhtml.replace('STUDENT_GRADE','Grade '+str(grade))
+        outhtml = outhtml.replace('STUDENT_FIRSTNAME',f_name.title())
+        outhtml = outhtml.replace('TEST_DATE',t_date)
+        outhtml = outhtml.replace('TIME_TAKEN',t_taken)
+        outhtml = outhtml.replace('T_TAKEN_LEVEL',t_taken_level)
+        outhtml = outhtml.replace('QUESTION_ATTEMPTED',attmpt_q_cnt)
+        outhtml = outhtml.replace('TOTAL_QUESTIONS',all_q_cnt)
+        outhtml = outhtml.replace('PERFECT_ATTEMPTS',perfect_q_cnt)
+        outhtml = outhtml.replace('PARTIALLY_CORRECT',partial_corr_q_cnt)
+        outhtml = outhtml.replace('INCORRECT_ATTEMPTS',incorr_q_cnt)
+        outhtml = outhtml.replace('OVERALL_SCORE',str(round(o_score*100,2)))
+        outhtml = outhtml.replace('PERFORMANCE_LEVEL',p_level)
+        outhtml = outhtml.replace('MATHEMATICS_GRADE_7',str(MATHEMATICS_GRADE_7))
+        outhtml = outhtml.replace('MATHEMATICS_GRADE_8',str(MATHEMATICS_GRADE_8))
+        outhtml = outhtml.replace('MATHEMATICS_GRADE_9',str(MATHEMATICS_GRADE_9))
+        outhtml = outhtml.replace('SCIENCE_GRADE_7',str(SCIENCE_GRADE_7))
+        outhtml = outhtml.replace('SCIENCE_GRADE_8',str(SCIENCE_GRADE_8))
+        outhtml = outhtml.replace('SCIENCE_GRADE_9',str(SCIENCE_GRADE_9))
+        outhtml = outhtml.replace('MENSURATION_MARKS',str(MENSURATION_MARKS))
+        outhtml = outhtml.replace('DATA_HANDLING_MARKS',str(DATA_HANDLING_MARKS))
+        outhtml = outhtml.replace('ARITHMETIC_MARKS',str(ARITHMETIC_MARKS))
+        outhtml = outhtml.replace('GEOMETRY_MARKS',str(GEOMETRY_MARKS))
+        outhtml = outhtml.replace('ALGEBRA_MARKS',str(ALGEBRA_MARKS))
+        outhtml = outhtml.replace('PHYSICS_MARKS',str(PHYSICS_MARKS))
+        outhtml = outhtml.replace('CHEMISTRY_MARKS',str(CHEMISTRY_MARKS))
+        outhtml = outhtml.replace('BIOLOGY_MARKS',str(BIOLOGY_MARKS))
 
-    for i in range(len(branch_wise_marks)):
-        b = branch_wise_marks.iloc[i,0]
-        outhtml = outhtml.replace('SCORE_'+b.upper(),str(branch_wise_marks.iloc[i,4]))
-        topic_output = gt_pivot[(gt_pivot['gsbt score']>=20) & (gt_pivot.branch==b)].sort_values(by=['sorter','G'], ascending=[False,False])
+        for i in range(len(subject_wise_marks)):
+            outhtml = outhtml.replace('SCORE_'+subject_wise_marks.iloc[i,0],str(subject_wise_marks.iloc[i,3]))
+
+        topic_output = gt_pivot[gt_pivot['gsbt score']>=20].sort_values(by=['branch','gt_level'])
+
+        for i in range(len(branch_wise_marks)):
+            b = branch_wise_marks.iloc[i,0]
+            outhtml = outhtml.replace('SCORE_'+b.upper(),str(branch_wise_marks.iloc[i,4]))
+            topic_output = gt_pivot[(gt_pivot['gsbt score']>=20) & (gt_pivot.branch==b)].sort_values(by=['sorter','G'], ascending=[False,False])
+            
+            temp=[]
+            for i,t in topic_output.iterrows():
+                if t['gt_level']=="Strong":
+                    style="bg-one"
+                elif t['gt_level']=="Average":
+                    style="bg-two"
+                else:
+                    style="bg-three"
+                temp.append("""<tr><td> <div class="icon """+style+""""><p> """+t['G']+"""</p></div></td> <td><p>"""+t['topic']+"""</p></td></tr>""")
+
+            outhtml = outhtml.replace(b.upper()+"_TOPICS", '\n'.join(temp))
+            #Ability
         
-        temp=[]
-        for i,t in topic_output.iterrows():
-            if t['gt_level']=="Strong":
-                style="bg-one"
-            elif t['gt_level']=="Average":
-                style="bg-two"
-            else:
-                style="bg-three"
-            temp.append("""<tr><td> <div class="icon """+style+""""><p>"""+t['G']+"""</p></div></td> <td><p>"""+t['topic']+"""</p></td></tr>""")
+            ability_output = ability_pivot[(ability_pivot['ability score']>=ability_pivot['Ability Max_marks cutoff']) & (ability_pivot['branch']==b)]
+            you_could_old = 'YOU_COULD_' + b.upper()
+            you_could_new = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in ability_output.loc[ability_output['ability level'] == 'Strong','ability']])
+            you_could_not_old = 'YOU_COULD_NOT_' + b.upper()
+            you_could_not_new = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in ability_output.loc[ability_output['ability level'] == 'Weak','ability']])
+            outhtml = outhtml.replace(you_could_old,you_could_new)
+            outhtml = outhtml.replace(you_could_not_old,you_could_not_new)
+            #Concepts
+            
+            confam_output = confam_pivot[(confam_pivot['ability score']>confam_pivot['Concept fam Max_marks cutoff']) & (confam_pivot.branch==b)]
+            do_not_know_old = 'DO_NOT_KNOW_' + b.upper()
+            temp = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in confam_output.loc[confam_output['confam_level'] == 'Do not know','Concept family']])
 
-        outhtml = outhtml.replace(b.upper()+"_TOPICS", '\n'.join(temp))
-        #Ability
-    
-        ability_output = ability_pivot[(ability_pivot['ability score']>=ability_pivot['Ability Max_marks cutoff']) & (ability_pivot['branch']==b)]
-        you_could_old = 'YOU_COULD_' + b.upper()
-        you_could_new = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in ability_output.loc[ability_output['ability level'] == 'Strong','ability']])
-        you_could_not_old = 'YOU_COULD_NOT_' + b.upper()
-        you_could_not_new = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in ability_output.loc[ability_output['ability level'] == 'Weak','ability']])
-        outhtml = outhtml.replace(you_could_old,you_could_new)
-        outhtml = outhtml.replace(you_could_not_old,you_could_not_new)
-        #Concepts
+            if len(temp) == 0: do_not_know_new = '<tr><td>No concepts here!</td></tr>' 
+            else: do_not_know_new = temp
+            know_old = 'KNOW_' + b.upper()
+            temp = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in confam_output.loc[confam_output['confam_level'] == 'Know','Concept family']])
+            if len(temp) == 0: know_new = '<tr><td>No concepts here!</td></tr>' 
+            else: know_new = temp
+            understand_old = 'UNDERSTAND_' + b.upper()
+            temp = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in confam_output.loc[confam_output['confam_level'] == 'Understand','Concept family']])
+            if len(temp) == 0: understand_new = '<tr><td>No concepts here!</td></tr>' 
+            else: understand_new = temp
+            apply_old = 'APPLY_' + b.upper()
+            temp = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in confam_output.loc[confam_output['confam_level'] == 'Apply','Concept family']])
+            if len(temp) == 0: apply_new = '<tr><td>No concepts here!</td></tr>' 
+            else: apply_new = temp
+            outhtml = outhtml.replace(do_not_know_old,do_not_know_new)
+            outhtml = outhtml.replace(know_old,know_new)
+            outhtml = outhtml.replace(understand_old,understand_new)
+            outhtml = outhtml.replace(apply_old,apply_new)
+            #results mean
+            r_mean = results_mean(b)
+            results_mean_old = 'RESULTS_MEAN_' + b.upper()
+            results_mean_new = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in r_mean])
+            outhtml = outhtml.replace(results_mean_old,results_mean_new)
+            #studdicted suggests mean
+            s_suggests = stud_suggests(b)
+            s_suggests_old = 'STUDDICTED_SUGGESTS_' + b.upper()
+            s_suggests_new = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in s_suggests])
+            outhtml = outhtml.replace(s_suggests_old,s_suggests_new)
         
-        confam_output = confam_pivot[(confam_pivot['ability score']>confam_pivot['Concept fam Max_marks cutoff']) & (confam_pivot.branch==b)]
-        do_not_know_old = 'DO_NOT_KNOW_' + b.upper()
-        temp = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in confam_output.loc[confam_output['confam_level'] == 'Do not know','Concept family']])
-
-        if len(temp) == 0: do_not_know_new = '<tr><td>No concepts here!</td></tr>' 
-        else: do_not_know_new = temp
-        know_old = 'KNOW_' + b.upper()
-        temp = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in confam_output.loc[confam_output['confam_level'] == 'Know','Concept family']])
-        if len(temp) == 0: know_new = '<tr><td>No concepts here!</td></tr>' 
-        else: know_new = temp
-        understand_old = 'UNDERSTAND_' + b.upper()
-        temp = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in confam_output.loc[confam_output['confam_level'] == 'Understand','Concept family']])
-        if len(temp) == 0: understand_new = '<tr><td>No concepts here!</td></tr>' 
-        else: understand_new = temp
-        apply_old = 'APPLY_' + b.upper()
-        temp = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in confam_output.loc[confam_output['confam_level'] == 'Apply','Concept family']])
-        if len(temp) == 0: apply_new = '<tr><td>No concepts here!</td></tr>' 
-        else: apply_new = temp
-        outhtml = outhtml.replace(do_not_know_old,do_not_know_new)
-        outhtml = outhtml.replace(know_old,know_new)
-        outhtml = outhtml.replace(understand_old,understand_new)
-        outhtml = outhtml.replace(apply_old,apply_new)
-        #results mean
-        r_mean = results_mean(b)
-        results_mean_old = 'RESULTS_MEAN_' + b.upper()
-        results_mean_new = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in r_mean])
-        outhtml = outhtml.replace(results_mean_old,results_mean_new)
-        #studdicted suggests mean
-        s_suggests = stud_suggests(b)
-        s_suggests_old = 'STUDDICTED_SUGGESTS_' + b.upper()
-        s_suggests_new = '\n'.join(["<tr><td>"+i+"</td></tr>" for i in s_suggests])
-        outhtml = outhtml.replace(s_suggests_old,s_suggests_new)
-
+        return outhtml
+        
+        
+    outhtml1 = template_creation(outhtml1)
     with open('templates/studentTemplate/'+name+' - '+str(s_id)+'.html','w+') as final_report:
-        final_report.write(outhtml)
-        
-    #pdf
+        final_report.write(outhtml1)
+
+    outhtml2 = template_creation(outhtml2)
     with open('templates/studentPdf/'+name+' - '+str(s_id)+'.html','w+') as final_pdf:
-        final_pdf.write(outhtml)
+        final_pdf.write(outhtml2)
+    #pdf
+    # with open('templates/studentPdf/'+name+' - '+str(s_id)+'.html','w+') as final_pdf:
+    #     final_pdf.write(outhtml)
 
 
     # rendered = render_template('studentPdf/'+name+' - '+str(s_id)+'.html')
@@ -684,7 +702,30 @@ def generate_report(id):
     # response = make_response(pdf)
     # response.headers['Content-Type'] = 'application/pdf'
     # response.headers['COntent-Disposition'] = 'attachment;filename = output.pdf'
-    
-
     # return response
     return render_template('studentTemplate/'+name+' - '+str(s_id)+'.html')
+
+
+@app.route("/student/<int:id>/report",methods=['GET'])
+def get_report(id):
+    #student id
+    s_id=id
+    student_response = getDataFromSheet('student_response')
+    student_response['sid'] = student_response['sid'].astype('int')
+    name = student_response.loc[student_response['sid'] == s_id, 'Full Name'].values[0]
+    return render_template('studentPdf/'+name+' - '+str(s_id)+'.html')
+
+
+@app.route("/student/<int:id>/download/",methods=['GET'])
+def download_report(id):
+    subprocess.run(f'python3 web_engine.py http://{HOST}:{PORT}/student/{id}/report report_{id}.pdf',shell=True,check=True, text=True)
+    return send_file(f"reports/report_{id}.pdf",as_attachment=True)
+
+def clear_reports():
+    shutil.rmtree('reports',ignore_errors=True)
+
+if __name__ == '__main__':
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(func=clear_reports, trigger="interval", days=1)
+    scheduler.start()
+    app.run(debug=True,threaded=True,host=HOST,port=PORT)
