@@ -1,6 +1,10 @@
 # report-generation
 
-*Flask project that returns learning diagnostic report of a student back*
+*Flask project that downloads the screeshot of a website that includes the css and jscript.*
+
+*What makes this special: there are a lot of pdf printing packages in python but none of them renders javascript(like graphs and others). So this was the solution I used.*
+
+*There might be unnecessary extra packages as it was taken from another one of my projects.*
 
 ***
 **Set Up**
